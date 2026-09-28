@@ -14,13 +14,6 @@ if(isset($_GET['id'])) {
     exit;
 }
 
-if(isset($_GET['id'])) {
-    $id = $_GET['id'];
-} else {
-    header("Location: series.php");
-    exit;
-}
-
 $series = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM series WHERE id = '$id'"));
 $timeline = mysqli_query($conn, "SELECT * FROM timeline WHERE series_id = '$id' ORDER BY urutan ASC");
 $characters = mysqli_query($conn, "SELECT * FROM characters WHERE series_id = '$id'");
@@ -841,6 +834,7 @@ function getDetailedStory($series_id, $series_title, $base_description) {
         <div class="nav-links">
             <a href="home.php">HOME</a>
             <a href="series.php">SERIES</a>
+            <a href="realms.php">REALMS</a>
             <a href="about.php">ABOUT</a>
             <a href="logout.php" class="nav-logout">LOGOUT</a>
         </div>

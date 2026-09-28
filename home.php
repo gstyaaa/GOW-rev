@@ -27,7 +27,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
             color: white;
             overflow: hidden;
             height: 100vh;
-            background-color: #000; 
+            background: #000 url('asset/GOWRG_Wallpaper_Desktop_Boat_4k.jpg') no-repeat center center / cover; 
         }
 
         /* --- BACKGROUND VIDEO --- */
@@ -164,6 +164,17 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
         const video = document.getElementById("bg-video");
         const btn = document.getElementById("sound-btn");
 
+        if (video) {
+            video.addEventListener("error", () => {
+                btn.style.display = "none";
+            }, true);
+            setTimeout(() => {
+                if (video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE || video.error) {
+                    btn.style.display = "none";
+                }
+            }, 600);
+        }
+
         btn.addEventListener("click", () => {
             video.muted = !video.muted;
             if (video.muted) {
@@ -183,6 +194,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
         <div class="nav-links">
             <a href="#" class="active">HOME</a>
             <a href="series.php">SERIES</a>
+            <a href="realms.php">REALMS</a>
             <a href="about.php">ABOUT</a>
         </div>
 
